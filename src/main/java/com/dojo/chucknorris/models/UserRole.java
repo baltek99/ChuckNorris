@@ -1,9 +1,5 @@
 package com.dojo.chucknorris.models;
 
-import java.math.BigDecimal;
-import java.util.Date;
-import java.util.GregorianCalendar;
-
 public enum UserRole {
     ADMIN("admin"),
     USER("user");
