@@ -1,16 +1,23 @@
 package com.dojo.chucknorris.models;
 
-public enum UserRole {
-    ADMIN("admin"),
-    USER("user");
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
-    private String role;
+@Entity
+public class UserRole {
 
-    UserRole(String role) {
-        this.role = role;
+    @GeneratedValue
+    @Id
+    private Long id;
+
+    private String name;
+
+    public String getName() {
+        return name;
     }
 
-    public String getRole() {
-        return role;
+    public void setName(String name) {
+        this.name = name;
     }
 }

@@ -12,10 +12,12 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.HashSet;
 import java.util.Set;
 
 @Service
+@Transactional
 public class AppUserDetailsService implements UserDetailsService {
 
     private final AppUserRepository appUserRepository;
@@ -33,7 +35,7 @@ public class AppUserDetailsService implements UserDetailsService {
         }
         Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
         appUser.getRoles().forEach(r ->
-                grantedAuthorities.add(new SimpleGrantedAuthority(r.getRole())));
+                grantedAuthorities.add(new SimpleGrantedAuthority(r.getName())));
 
         return new User(appUser.getUsername(), passwordEncoder().encode(appUser.getPassword()),
                 grantedAuthorities);
