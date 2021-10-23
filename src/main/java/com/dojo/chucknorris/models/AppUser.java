@@ -14,10 +14,6 @@ public class AppUser {
 
     private String password;
 
-//    @ElementCollection(targetClass = UserRoleEnum.class)
-//    @Enumerated(EnumType.STRING)
-//    private Set<UserRoleEnum> roles;
-
     @ManyToMany
     private Set<UserRole> roles;
 
