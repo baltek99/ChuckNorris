@@ -2,11 +2,16 @@ package com.dojo.chucknorris.controllers;
 
 import com.dojo.chucknorris.models.Joke;
 import com.dojo.chucknorris.service.JokeService;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.io.IOException;
+import java.util.Collection;
 
 @Controller
 public class JokesController {
@@ -46,5 +51,11 @@ public class JokesController {
     public String getAllJokes(Model model) {
         model.addAttribute("jokes", jokeService.getAllJokes());
         return "jokes";
+    }
+
+    @RequestMapping(value = "/userRole", method = RequestMethod.GET)
+    @ResponseBody
+    public String currentUserRole(Authentication authentication) {
+        return authentication.getAuthorities().toString();
     }
 }

@@ -35,7 +35,7 @@ public class AppUserDetailsService implements UserDetailsService {
         }
         Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
         appUser.getRoles().forEach(r ->
-                grantedAuthorities.add(new SimpleGrantedAuthority(r.getName())));
+                grantedAuthorities.add(new SimpleGrantedAuthority("ROLE_" + r.getName())));
 
         return new User(appUser.getUsername(), passwordEncoder().encode(appUser.getPassword()),
                 grantedAuthorities);

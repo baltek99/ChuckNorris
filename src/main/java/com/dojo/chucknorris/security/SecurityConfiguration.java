@@ -17,6 +17,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
         httpSecurity.authorizeRequests()
                 .mvcMatchers(HttpMethod.GET, "/getJoke").permitAll()
+                .mvcMatchers(HttpMethod.GET, "/getAndSaveJoke").hasAnyRole("ADMIN")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin();
